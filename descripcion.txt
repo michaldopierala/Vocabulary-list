@@ -1,0 +1,2 @@
+To jest program do zapisywaniu slow ktore sie zna.
+ Nastepnie mozna sie sprawdzac czy sie je pamieta.
