@@ -12,7 +12,6 @@
     padding: 5px 20px;
   }
 
-
   a, button:hover {
     cursor: pointer;
   }
@@ -21,14 +20,10 @@
     text-align: right;
     padding: 20px;
   }
-
-
-
   #row2{
     border: black 1px solid;
     padding: 20px;
   }
-
 
   #row3{
     border: green 1px solid;
@@ -53,7 +48,7 @@
 <body>
 
 <div id="row1">
-  <a>Add new word</a>
+  <a href="add_new.html">Add new word</a>
 </div>
 
 <div id="row2">
@@ -84,23 +79,14 @@ const xhttp = new XMLHttpRequest();
 
 // Recive JSON and convert to object 
 xhttp.onload = function() {
-  //document.getElementById("testing").innerText=this.responseText;
-  console.log(JSON.parse(this.responseText));
   tabe_db = JSON.parse(this.responseText);
-        console.log(tabe_db);
 
 // function display table with vocabulary on the webpage.  
 let table ="";
 for (let x in tabe_db) {
-  console.log("yes ");
-  let btn = tabe_db[x].newword;
-  table = table + "<div class='tb'>"+
-    "<div><button value='"+x+"' onclick='display(this)'>"+ btn +"</button></div> <div></div> <div></div>" +"</div>";
+  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div></div> <div></div>" +"</div>";
   document.getElementById("row3").innerHTML=table;
-  
 }
-
-
 }
 
 // Send a request
@@ -110,30 +96,28 @@ xhttp.send();
 
 
 
-//  SCREEN 
-let gues = [{"a1":"car","a2":"samochod","a3":"95","a4":"0000-00-00"},
-{"a1":"dog","a2":"pies","a3":"99","a4":"0000-00-00"}
-];
-
-let words = [
- ["sleep", "spac", 78],
- ["walk", "isc", 89],
- ["cat", "kot", 99],
- ["car", "samochod", 90]
-]
-
-
-// function activeted after after word is pressed/ this activate buttons for rating  
+// disply transletion and ratting button after pressing word  
 function display(ev){
-let x = ev.value;
-let child = document.getElementById("row3").children[x];
-console.log(child);
-let showword = tabe_db[x].transl;
-console.log(showword);
-child.children[1].innerText = showword;
-child.children[2].innerHTML = "<button onclick='color(this)'>bad</button><button onclick='color(this)'>good</button>";
+let val = ev.value;
+
+//      find iteration of object with current id
+let tabe_iter; 
+for(let x in tabe_db){
+if(tabe_db[x].id==val){
+tabe_iter = x; 
+}
 }
 
+let showword = tabe_db[tabe_iter].transl;
+let ele = ev.parentElement.parentElement;
+ele.children[1].innerText = showword;
+ele.children[2].innerHTML="<button onclick='color(this)'>bad</button><button onclick='color(this)'>good</button>";
+}
+
+
+
+
+// change collor after rating 
 function color(ev){
   let element = ev.parentElement.parentElement.children[0].children[0];
 console.log(element.value);
@@ -148,12 +132,6 @@ ev.parentElement.innerHTML="";
   console.log("error with understing button color");
 }
 }
-
-//this line was made on mobile phin
-
- var obj1 = { a: 10 };
-         obj1 = Object.assign({}, obj1);
-        console.log(obj1);
 
 
 </script>
