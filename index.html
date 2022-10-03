@@ -34,7 +34,7 @@
 
   #row3 div{
     display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   padding: 10px;
     
   }
@@ -73,22 +73,22 @@
 
 //const tabe_db = new Object();
 let tabe_db = [];
+let id;
+let tabe_iter; // iteration of elements on the page 
+
 
 // AJAX
 const xhttp = new XMLHttpRequest();
-
 // Recive JSON and convert to object 
 xhttp.onload = function() {
   tabe_db = JSON.parse(this.responseText);
-
 // function display table with vocabulary on the webpage.  
 let table ="";
 for (let x in tabe_db) {
-  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div></div> <div></div>" +"</div>";
+  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div></div> <div></div><div></div><div></div>" +"</div>";
   document.getElementById("row3").innerHTML=table;
 }
 }
-
 // Send a request
 xhttp.open("GET", "db.php");
 xhttp.send();
@@ -98,13 +98,13 @@ xhttp.send();
 
 // disply transletion and ratting button after pressing word  
 function display(ev){
-let val = ev.value;
+id = ev.value;
 
 //      find iteration of object with current id
-let tabe_iter; 
 for(let x in tabe_db){
-if(tabe_db[x].id==val){
+if(tabe_db[x].id==id){
 tabe_iter = x; 
+console.log(x);
 }
 }
 
@@ -120,7 +120,7 @@ ele.children[2].innerHTML="<button onclick='color(this)'>bad</button><button onc
 // change collor after rating 
 function color(ev){
   let element = ev.parentElement.parentElement.children[0].children[0];
-console.log(element.value);
+//console.log(element.value);
 
 if(ev.innerText == "bad"){
 element.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
