@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+
+<style>
+  a{
+    border: solid 0.5px black;
+    border-radius: 10px;
+    margin: 40px;
+    padding: 5px 20px;
+  }
+
+  a, button:hover {
+    cursor: pointer;
+  }
+  #row1{
+    border: black 1px solid;
+    text-align: right;
+    padding: 20px;
+  }
+  #row2{
+    border: black 1px solid;
+    padding: 20px;
+  }
+
+  #row3{
+    border: green 1px solid;
+    padding: 20px;
+  
+
+  }
+
+  #row3 div{
+    display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+    
+  }
+
+  .tb div{
+    border: solid green 1px;
+  }
+
+</style>
+</head>
+<body>
+
+<div id="row1">
+  <a href="add_new.html">Add new word</a>
+</div>
+
+<div id="row2">
+  <a>Best results first</a>
+  <a>Worst results first</a>
+  <a>Random</a>
+  <a>best</a>
+  <a href="">worst</a>
+  <a href="">newest</a>
+  <a href="">oldest</a>
+</div>
+
+<div id="row3">
+  row 3
+</div>
+
+<div id="testing">TEST JSON</div>
+
+
+<script>
+// GET TABLE FROM THE SERVER 
+
+//const tabe_db = new Object();
+let tabe_db = [];
+
+// AJAX
+const xhttp = new XMLHttpRequest();
+
+// Recive JSON and convert to object 
+xhttp.onload = function() {
+  tabe_db = JSON.parse(this.responseText);
+
+// function display table with vocabulary on the webpage.  
+let table ="";
+for (let x in tabe_db) {
+  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div></div> <div></div>" +"</div>";
+  document.getElementById("row3").innerHTML=table;
+}
+}
+
+// Send a request
+xhttp.open("GET", "db.php");
+xhttp.send();
+
+
+
+
+// disply transletion and ratting button after pressing word  
+function display(ev){
+let val = ev.value;
+
+//      find iteration of object with current id
+let tabe_iter; 
+for(let x in tabe_db){
+if(tabe_db[x].id==val){
+tabe_iter = x; 
+}
+}
+
+let showword = tabe_db[tabe_iter].transl;
+let ele = ev.parentElement.parentElement;
+ele.children[1].innerText = showword;
+ele.children[2].innerHTML="<button onclick='color(this)'>bad</button><button onclick='color(this)'>good</button>";
+}
+
+
+
+
+// change collor after rating 
+function color(ev){
+  let element = ev.parentElement.parentElement.children[0].children[0];
+console.log(element.value);
+
+if(ev.innerText == "bad"){
+element.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
+ev.parentElement.innerHTML="";
+}else if(ev.innerText == "good"){
+  element.parentElement.parentElement.style.backgroundColor  = "rgb(204, 255, 179)";
+  ev.parentElement.innerHTML="";
+}else{
+  console.log("error with understing button color");
+}
+}
+
+
+</script>
+
+</body>
+</html>
