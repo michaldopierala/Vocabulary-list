@@ -1,8 +1,9 @@
 <?php 
 
-//$id =$_GET['id'];
-//$v =$_GET['value'];
-$id = 5; 
+$id =$_GET['id'];
+$v =$_GET['value'];
+
+
 
 // DATABASE 
 $servername = "localhost";
@@ -16,22 +17,39 @@ $db = mysqli_select_db($connection,$dbname) ;
 
 
 // Send MySQL request and recive result 
-$sql = "SELECT newword FROM vocabulary_table WHERE id='5'";
+$sql = "SELECT score FROM vocabulary_table WHERE id=$id";
 $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_assoc($result);
 
 
+$arr = json_decode($row["score"]);
 
-//$result[1] =$result[1]++;
+//if result is not an array create an empty array 
+if(gettype($arr)!='array'){
+$arr = [0, 0];
+}
 
 
-//var_dump($row["newword"]);
+// save your score in array 
+$arr[1] =$arr[1]+1;
+if($v=="good"){
+  $arr[0] =$arr[0]+1;
+}
 
-//echo json_encode($result);
-//echo $v; 
 
-// send JSON
-echo json_encode($row);
-//echo "test";
+$arr=json_encode($arr);
+
+// save result in DB
+$sql2 = "UPDATE vocabulary_table SET score='$arr' WHERE id='$id'";
+
+// send request and check status 
+if (mysqli_query($connection,$sql2)) {
+//  echo "Record updated successfully";
+} else {
+  echo "Error updating record: " . mysqli_error($connection);
+}
+
+
+echo $arr;
 
 ?>

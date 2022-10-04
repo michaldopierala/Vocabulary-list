@@ -143,6 +143,14 @@ const xhttp2 = new XMLHttpRequest();
 xhttp.onload = function() {
  // document.getElementById("testing").innerText=this.responseText;
   console.log(this.responseText);
+  if(ev.innerText == "good"){
+    console.log(ev.parentElement.parentElement.children[3]);
+    ev.parentElement.parentElement.children[3].innerText=this.responseText;
+    ev.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
+    ev.parentElement.innerHTML="";
+  }else if(ev.innerText == "bad"){
+    ev.parentElement.innerHTML="";
+  }
   
 }
 // Send a request
