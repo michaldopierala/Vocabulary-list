@@ -1,7 +1,8 @@
 <?php 
 
-$id =$_GET['id'];
-$v =$_GET['value'];
+//$id =$_GET['id'];
+//$v =$_GET['value'];
+$id = 5; 
 
 // DATABASE 
 $servername = "localhost";
@@ -15,17 +16,22 @@ $db = mysqli_select_db($connection,$dbname) ;
 
 
 // Send MySQL request and recive result 
-$sql = "SELECT  score FROM MyGuests WHERE id=$id ";
+$sql = "SELECT newword FROM vocabulary_table WHERE id='5'";
 $result = mysqli_query($connection,$sql);
-echo $result;
-//$result =json decode($result);
+$row = mysqli_fetch_assoc($result);
+
+
 
 //$result[1] =$result[1]++;
 
 
+//var_dump($row["newword"]);
 
+//echo json_encode($result);
+//echo $v; 
 
-
-
+// send JSON
+echo json_encode($row);
+//echo "test";
 
 ?>
