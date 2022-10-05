@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page Title</title>
 
 
@@ -35,8 +36,7 @@
   #row3 div{
     display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  padding: 10px;
-    
+  margin: 10px;   
   }
 
   .tb div{
@@ -120,46 +120,29 @@ ele.children[2].innerHTML="<button value='st' onclick='score(this)'>bad</button>
 
 
 
-// change collor after rating 
-// function color(ev){
-//   let element = ev.parentElement.parentElement.children[0].children[0];
-//console.log(element.value);
-
-// if(ev.innerText == "bad"){
-// element.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
-// ev.parentElement.innerHTML="";
-// }else if(ev.innerText == "good"){
-//   element.parentElement.parentElement.style.backgroundColor  = "rgb(204, 255, 179)";
-//   ev.parentElement.innerHTML="";
-// }else{
-//   console.log("error with understing button color");
-// }
-// }
-
+// get score 
 function score(ev){
-console.log(ev.innerText);
-const xhttp2 = new XMLHttpRequest();
+console.log("hello world");
+  const xhttp2 = new XMLHttpRequest();
 
 xhttp.onload = function() {
- // document.getElementById("testing").innerText=this.responseText;
-  console.log(this.responseText);
+  let response = JSON.parse(this.responseText); 
+  
   if(ev.innerText == "good"){
     console.log(ev.parentElement.parentElement.children[3]);
-    ev.parentElement.parentElement.children[3].innerText=this.responseText;
-    ev.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
+    ev.parentElement.parentElement.children[3].innerText=response[0]+ "/"+response[1];
+    ev.parentElement.parentElement.style.backgroundColor = "rgb(204, 255, 179)";
     ev.parentElement.innerHTML="";
   }else if(ev.innerText == "bad"){
+    ev.parentElement.parentElement.children[3].innerText=response[0]+"/"+response[1];
+    ev.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
     ev.parentElement.innerHTML="";
   }
-  
 }
 // Send a request
 xhttp.open("GET", "score.php?id="+id+"&value="+ev.innerText);
 xhttp.send();
-
 }
-
-
 
 </script>
 

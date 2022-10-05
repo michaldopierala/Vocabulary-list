@@ -22,6 +22,7 @@ $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_assoc($result);
 
 
+
 $arr = json_decode($row["score"]);
 
 //if result is not an array create an empty array 
@@ -44,7 +45,7 @@ $sql2 = "UPDATE vocabulary_table SET score='$arr' WHERE id='$id'";
 
 // send request and check status 
 if (mysqli_query($connection,$sql2)) {
-//  echo "Record updated successfully";
+  //echo "Record updated successfully";
 } else {
   echo "Error updating record: " . mysqli_error($connection);
 }

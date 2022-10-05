@@ -12,25 +12,60 @@
   }
   
 #container{
-  width:50%;
-  margin: 50px auto;
-  display: grid;
-  grid-template-columns: auto auto;
+  margin:50px auto;
+  border: black solid 0.5px;
 }
+
 </style>
 </head>
 
 
 <body>
-  <a href="index.html"><-- go back</a>
+  <a href="index.html"> go back</a>
 
-  <div id="container">
-    <div>New word</div>
-    <div>Translation</div>
-    <input type="text">
-    <input type="text">
-    <button>SUBMIT</button>
+  <!-- <form id="myForm" action="db/add.php"> -->
+    <div id="container">
+      <label for="fname">New Word:</label><br>
+    <input type="text" id="new" name="new" ><br><br>
+    <label for="lname">Translation:</label><br>
+    <input type="text" id="tr" name="tr" ><br><br>
+    <button id="send">Send</button>
+    </div>
+    
+  <!-- </form>  -->
+
+
+  <div id="">
+    New word was added succesfully!
   </div>
 
+
+<script>
+let x=document.getElementById("new").value; 
+let y=document.getElementById("tr").value; 
+
+document.getElementById("send").addEventListener("click", sendData);
+
+
+function sendData(){
+  if(x !="" & y !=""){
+    console.log(" ok");
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+
+    } 
+    // Send a request
+xhttp.open("GET", "db/add.php?new="+x+"&tr="+y);
+xhttp.send();
+
+  }else{
+    alert("Word must be filled out");
+  }
+
+}
+</script>
+
+
+  
 </body>
 </html>
