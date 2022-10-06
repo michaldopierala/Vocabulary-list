@@ -15,7 +15,7 @@ $sql = "INSERT INTO vocabulary_table (newword	, transl) VALUES ('$new', '$tr')";
 if (mysqli_query($connection,$sql)) {
   echo "Record updated successfully";
 } else {
-  echo "Error updating record: " . mysqli_error($connection);
+ // echo "Error updating record: " . mysqli_error($connection);
 }
 
 
