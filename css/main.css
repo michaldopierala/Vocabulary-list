@@ -11,7 +11,6 @@ a{
   padding: 10px 25px;
   text-decoration: none;
   color: whitesmoke;
-  font-weight: bold;
 }
 
 a, button:hover {
@@ -26,6 +25,7 @@ button{
   margin: 5px;
   color: black;
   font-weight: bold;
+  width: 100px;
 }
 
 
@@ -36,7 +36,6 @@ button{
 #row2{
   display: flex;
   flex-wrap: wrap;
-  /* border: black 1px solid; */
   padding: 10px;
 }
 
@@ -47,15 +46,15 @@ button{
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-.tb > div {
-  border: solid  green 1px;
-  text-align: center;
-  color: red;
-}
 
-.tb >  button {
-  /* border: solid  1px; */
-  /* text-align: center; */
+
+
+.tb > div {
+  background-color: rgba(183, 254, 183, 0.63);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
 }
 
 #modal_box{
@@ -80,7 +79,18 @@ button{
 }
 
 
+@media only screen and (max-width: 600px) {
+  button{
+    width: 70px;
+  }
 
+  .tb > div {
+    display: flex;
+    flex-direction: column;
+
+
+  }
+}
 
 
 

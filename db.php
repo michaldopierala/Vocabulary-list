@@ -21,6 +21,7 @@ $result = mysqli_query($connection,$sql);
 // create array with the results from DB 
 $arr = array();
 while($row = mysqli_fetch_assoc($result)) {
+  $row["score"]= json_decode($row["score"]); // convert score from string to array 
   array_push($arr,$row);
 }
 

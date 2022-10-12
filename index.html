@@ -37,27 +37,38 @@
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
 <script>
-// GET TABLE FROM THE SERVER 
+
+// 1. GET TABLE FROM THE SERVER 
 
 //const tabe_db = new Object();
 let tabe_db = [];
 let id;
 let tabe_iter; // iteration of elements on the page 
 
-
 // AJAX
 const xhttp = new XMLHttpRequest();
-console.log(xhttp);
+
 // Recive JSON and convert to object 
 xhttp.onload = function() {
   tabe_db = JSON.parse(this.responseText);
 // function display table with vocabulary on the webpage.  
 let table ="";
 for (let x in tabe_db) {
-  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div id='te22'>w</div> <div></div><div></div><div></div>" +"</div>";
+  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div id='te22'></div> <div></div><div></div><div></div>" +"</div>";
   document.getElementById("row3").innerHTML=table;
 }
+console.log(tabe_db);
 }
 // Send a request
 xhttp.open("GET", "db.php");
@@ -66,45 +77,46 @@ xhttp.send();
 
 
 
-// disply transletion and ratting button after pressing word  
+// 2. Disply transletion and ratting button after pressing word  
 function display(ev){
 id = ev.value;
 
-//      find iteration of object with current id
+// find iteration of object with current id
 for(let x in tabe_db){
-if(tabe_db[x].id==id){
-tabe_iter = x; 
-console.log(x);
-console.log("id:"+id);
-}
-}
-
-let showword = tabe_db[tabe_iter].transl;
-let ele = ev.parentElement.parentElement;
-ele.children[1].innerText = showword;
-ele.children[2].innerHTML="<button onclick='score(this)'>bad</button><button onclick='score(this)'>good</button>";
-ele.children[4].innerHTML="<button onclick='remove(this)'>Delete</button><button onclick='update(this)'>Update</button>";
+  if(tabe_db[x].id==id){
+    tabe_iter = x; 
+    console.log(x);
+    console.log("id:"+id);
+  }
 }
 
+  let showword = tabe_db[tabe_iter].transl;
+  let score = tabe_db[tabe_iter].score;
+  let ele = ev.parentElement.parentElement;
+  ele.children[1].innerText = showword;
+  ele.children[2].innerHTML="<button onclick='score(this)'>bad</button><button onclick='score(this)'>good</button>";
+  ele.children[3].innerHTML= Math.round((score[0]/score[1])*100)+"%";
+  ele.children[4].innerHTML="<button onclick='remove(this)'>Delete</button><button onclick='update(this)'>Update</button>";
+}
 
 
 
-// get score 
+
+// 3. Update score in db & get new score 
 function score(ev){
-console.log("hello world");
   const xhttp2 = new XMLHttpRequest();
 
-xhttp.onload = function() {
+  xhttp.onload = function() {
   let response = JSON.parse(this.responseText); 
   
   if(ev.innerText == "good"){
     console.log(ev.parentElement.parentElement.children[3]);
     ev.parentElement.parentElement.children[3].innerText=response[0]+ "/"+response[1];
-    ev.parentElement.parentElement.style.backgroundColor = "rgb(204, 255, 179)";
+    ev.parentElement.parentElement.style.backgroundColor = "rgb(0, 128, 0)";
     ev.parentElement.innerHTML="";
   }else if(ev.innerText == "bad"){
-    ev.parentElement.parentElement.children[3].innerText=response[0]+"/"+response[1];
-    ev.parentElement.parentElement.style.backgroundColor = "rgb(255, 204, 204)";
+    ev.parentElement.parentElement.children[3].innerText= Math.round((response[0]/response[1])*100)+"%";
+    ev.parentElement.parentElement.style.backgroundColor = "rgb(255, 102, 102)";
     ev.parentElement.innerHTML="";
   }
 }
@@ -120,12 +132,10 @@ xhttp.send();
 
 
 
-// Modal box for deleting word
+// 4. Modal box for deleting word
 let ele;
 document.getElementById("yes_delete").addEventListener("click", remove_yes);
 document.getElementById("no_delete").addEventListener("click", remove_no);
-
-
 
 //delete
 function remove(ev){
@@ -147,6 +157,12 @@ function remove_yes(){
 function remove_no(){
   document.getElementById("modal_box").style.display="none";
 }
+
+
+
+
+
+
 
 </script>
 
