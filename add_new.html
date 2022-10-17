@@ -7,7 +7,8 @@
     margin: 0px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: green;
+    background-color: lightgreen;
+
 
 
   }
@@ -40,16 +41,16 @@
   color: whitesmoke;
   font-size: 45px;
   font-weight: bold;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
-  display: none;
 }
 
 input, button{
   font-size: 25px;
   border-radius: 7px;
   border: 1px solid black;
+  padding:8px;
 }
 
 button{
@@ -98,7 +99,7 @@ function sendData(){
   if(x!="" & y!=""){
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
-      document.getElementById('succes').style.display="block";
+      document.getElementById('succes').style.display="flex";
       setTimeout(() => window.location.href = '/vocabulary_list', 2500);
     } 
     // Send a request

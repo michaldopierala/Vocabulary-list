@@ -80,8 +80,9 @@ xhttp.send();
 // 2. Disply transletion and ratting button after pressing word  
 function display(ev){
 id = ev.value;
+let check_if_active = ev.parentNode.parentNode.children[1].innerText; // this gets a text from second column
 
-// find iteration of object with current id
+if(check_if_active.length==0){ 
 for(let x in tabe_db){
   if(tabe_db[x].id==id){
     tabe_iter = x; 
@@ -95,8 +96,10 @@ for(let x in tabe_db){
   let ele = ev.parentElement.parentElement;
   ele.children[1].innerText = showword;
   ele.children[2].innerHTML="<button onclick='score(this)'>bad</button><button onclick='score(this)'>good</button>";
-  ele.children[3].innerHTML= Math.round((score[0]/score[1])*100)+"%";
+  ele.children[3].innerHTML= Math.round((score[0]/score[1])*100)+"% ("+score[0]+"/"+score[1]+")";
   ele.children[4].innerHTML="<button onclick='remove(this)'>Delete</button><button onclick='update(this)'>Update</button>";
+}
+
 }
 
 
@@ -111,11 +114,11 @@ function score(ev){
   
   if(ev.innerText == "good"){
     console.log(ev.parentElement.parentElement.children[3]);
-    ev.parentElement.parentElement.children[3].innerText=response[0]+ "/"+response[1];
+    ev.parentElement.parentElement.children[3].innerText=Math.round((response[0]/response[1])*100)+"% ("+response[0]+"/"+response[1]+")";
     ev.parentElement.parentElement.style.backgroundColor = "rgb(0, 128, 0)";
     ev.parentElement.innerHTML="";
   }else if(ev.innerText == "bad"){
-    ev.parentElement.parentElement.children[3].innerText= Math.round((response[0]/response[1])*100)+"%";
+    ev.parentElement.parentElement.children[3].innerText= Math.round((response[0]/response[1])*100)+"% ("+response[0]+"/"+response[1]+")";
     ev.parentElement.parentElement.style.backgroundColor = "rgb(255, 102, 102)";
     ev.parentElement.innerHTML="";
   }
