@@ -1,0 +1,2 @@
+*in sort.js at the beginning ot the file make sure that buttons colors are rest
+it will be one line of code but you need to make sure that class and id's are pointed correctly.

@@ -11,17 +11,19 @@
 
 
 <body>
+<div id="testing"> test box</div>
 
 <div id="row1">
   <a href="add_new.html">Add New Word</a>
 </div>
 
 <div id="row2">
-  <a>Best first</a>
-  <a>Worst first</a>
-  <a>Random</a>
-  <a href="">Newest</a>
-  <a href="">Oldest</a>
+  <button id="sort_best">Best first</button>
+  <button id="sort_worst">Worst first</button>
+  <button id="sort_random">Random</button>
+  <button id="sort_newest">Newest</button>
+  <button id="sort_oldest">Oldest</button>  
+
 </div>
 
 <div id="row3">
@@ -62,7 +64,6 @@ const xhttp = new XMLHttpRequest();
 // Recive JSON and convert to object 
 xhttp.onload = function() {
   tabe_db = JSON.parse(this.responseText);
-  // console.log(tabe_db);
 // function display table with vocabulary on the webpage.  
 let table ="";
 for (let x in tabe_db) {
@@ -70,6 +71,7 @@ for (let x in tabe_db) {
   document.getElementById("row3").innerHTML=table;
 }
 }
+
 // Send a request
 xhttp.open("GET", "db.php");
 xhttp.send();
@@ -113,7 +115,6 @@ function score(ev){
   let response = JSON.parse(this.responseText); 
   
   if(ev.innerText == "good"){
-    console.log(ev.parentElement.parentElement.children[3]);
     ev.parentElement.parentElement.children[3].innerText=Math.round((response[0]/response[1])*100)+"% ("+response[0]+"/"+response[1]+")";
     ev.parentElement.parentElement.style.backgroundColor = "rgb(0, 128, 0)";
     ev.parentElement.innerHTML="";
@@ -161,13 +162,9 @@ function remove_no(){
   document.getElementById("modal_box").style.display="none";
 }
 
-
-
-
-
-
-
 </script>
+
+<script src="js/sort.js"></script>
 
 </body>
 </html>

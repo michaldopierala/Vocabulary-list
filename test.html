@@ -5,30 +5,32 @@
   <!-- <link rel="stylesheet" href="css/main.css"> -->
   <title>Page Title</title>
   <style>
+    #btn{
+      margin: 10px;
+      padding: 5px 40px;
+      border: none;
+      border-radius: 8px;
+      background-color: darkcyan;
+      color: beige;
+      font-size: 20px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #btn:hover{
+      cursor: pointer;
+    }
+
+    #display{
+      border: salmon 0.5px solid;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
 
 
-#row3 >div{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
 
-.tb > div {
-  border: solid  green 1px;
-  text-align: center;
-}
-
-.tb >  button {
-  /* border: solid  1px; */
-  text-align: center;
-}
-
-/* 
- #te22{
-  text-align: center;
-  border: blue 1px solid;
-  background-color: aqua;
-  margin: 5px;
-}  */
   </style>
 </head>
 
@@ -45,23 +47,66 @@
 
 
 <body>
+  <button id="btn">TEST</button>
+  <div id="display">...</div>
 
 
 
-<div id="row3">
-  <div class='tb'>
-    <div>
-      <button value='1'>test word</button>
-    </div> 
-    <div id='te22'>w</div> 
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
 
 
 
+
+<script>
+  let tabe_db = [];
+
+const items = [
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'And', value: 45 },
+  { name: 'The', value: -12 },
+  { name: 'Magnetic', value: 13 },
+  { name: 'Zeros', value: 37 }
+];
+
+const dis = document.getElementById('display');
+
+document.getElementById('btn').addEventListener('click',sort);
+
+
+// AJAX
+const xhttp = new XMLHttpRequest();
+
+// Recive JSON and convert to object 
+xhttp.onload = function() {
+  tabe_db = JSON.parse(this.responseText);
+  console.log(tabe_db);
+
+}
+
+// Send a request
+xhttp.open("GET", "db.php");
+xhttp.send();
+
+
+
+
+
+
+
+
+
+
+
+function sort(){
+  dis.innerHTML="It was activated";
+   tabe_db.sort((a, b) => (a.score[0]/a.score[1]) - (b.score[0]/b.score[1]));
+  // console.log(tabe_db[0].score[0]/tabe_db[0].score[1]);
+  console.log(tabe_db);
+}
+
+
+
+</script>
 
 </body>
 </html>

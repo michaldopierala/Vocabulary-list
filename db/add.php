@@ -6,9 +6,10 @@ require 'connect.php';
 
 $new =$_GET['new'];
 $tr =$_GET['tr'];
+$time = time(); 
 
 
-$sql = "INSERT INTO vocabulary_table (newword	, transl) VALUES ('$new', '$tr')";
+$sql = "INSERT INTO vocabulary_table (newword	, transl , time) VALUES ('$new', '$tr', '$time')";
 
 
 
