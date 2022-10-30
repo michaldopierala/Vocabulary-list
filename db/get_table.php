@@ -1,21 +1,12 @@
 <?php 
 
-
- // DATABASE 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "vocabulary";
-
-// connect to DB
-$connection = mysqli_connect($servername,$username,$password );
-$db = mysqli_select_db($connection,$dbname);
+//connect to data base
+require 'connect.php';
 
 
 // Send MySQL request and recive result 
 $sql = "SELECT * FROM vocabulary_table";
 $result = mysqli_query($connection,$sql);
-
 
 
 // create array with the results from DB 
@@ -24,7 +15,6 @@ while($row = mysqli_fetch_assoc($result)) {
   $row["score"]= json_decode($row["score"]); // convert score from string to array 
   array_push($arr,$row);
 }
-
 
 
 // send JSON

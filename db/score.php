@@ -1,19 +1,11 @@
 <?php 
+//connect to data base
+require 'connect.php';
+
+
 
 $id =$_GET['id'];
 $v =$_GET['value'];
-
-
-
-// DATABASE 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "vocabulary";
-
-// connect to DB
-$connection = mysqli_connect($servername,$username,$password );
-$db = mysqli_select_db($connection,$dbname) ;
 
 
 // Send MySQL request and recive result 
@@ -36,8 +28,6 @@ $arr[1] =$arr[1]+1;
 if($v=="good"){
   $arr[0] =$arr[0]+1;
 }
-
-
 $arr=json_encode($arr);
 
 // save result in DB

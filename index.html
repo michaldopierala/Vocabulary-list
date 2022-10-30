@@ -11,7 +11,8 @@
 
 
 <body>
-<div id="testing"> test box</div>
+
+<button id="twist"> Twist </button>
 
 <div id="row1">
   <a href="add_new.html">Add New Word</a>
@@ -27,7 +28,7 @@
 </div>
 
 <div id="row3">
-  row 3
+  Sorry, the connection to the database was not succesfull.  
 </div>
 
 
@@ -51,33 +52,6 @@
 
 <script>
 
-// 1. GET TABLE FROM THE SERVER 
-
-//const tabe_db = new Object();
-let tabe_db = [];
-let id;
-let tabe_iter; // iteration of elements on the page 
-
-// AJAX
-const xhttp = new XMLHttpRequest();
-
-// Recive JSON and convert to object 
-xhttp.onload = function() {
-  tabe_db = JSON.parse(this.responseText);
-// function display table with vocabulary on the webpage.  
-let table ="";
-for (let x in tabe_db) {
-  table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div id='te22'></div> <div></div><div></div><div></div>" +"</div>";
-  document.getElementById("row3").innerHTML=table;
-}
-}
-
-// Send a request
-xhttp.open("GET", "db.php");
-xhttp.send();
-
-
-
 
 // 2. Disply transletion and ratting button after pressing word  
 function display(ev){
@@ -88,8 +62,6 @@ if(check_if_active.length==0){
 for(let x in tabe_db){
   if(tabe_db[x].id==id){
     tabe_iter = x; 
-    console.log(x);
-    console.log("id:"+id);
   }
 }
 
@@ -125,7 +97,7 @@ function score(ev){
   }
 }
 // Send a request
-xhttp.open("GET", "score.php?id="+id+"&value="+ev.innerText);
+xhttp.open("GET", "db/score.php?id="+id+"&value="+ev.innerText);
 xhttp.send();
 }
 
@@ -164,7 +136,11 @@ function remove_no(){
 
 </script>
 
+<script src="js/load_tb.js"></script>
 <script src="js/sort.js"></script>
+<script src="js/twist.js"></script>
+
+
 
 </body>
 </html>

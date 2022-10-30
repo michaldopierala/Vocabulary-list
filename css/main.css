@@ -56,6 +56,11 @@ button{
   margin: 3px;
 }
 
+.tb:first-child>div{
+  background-color: rgba(240, 240, 240, 0.88 );
+  padding: 10px;
+}
+
 #modal_box{
   display: none;
   position: fixed;
@@ -90,21 +95,5 @@ border:black solid 0.5px ;
   .tb > div {
     display: flex;
     flex-direction: column;
-
-
   }
 }
-
-
-
-
-
-
-
-/* 
- #te22{
-  text-align: center;
-  border: blue 1px solid;
-  background-color: aqua;
-  margin: 5px;
-}  */
