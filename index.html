@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main.css">
   <title>Page Title</title>
+
+
+
+  <style>
+    #stats{
+      position: relative;
+    }
+
+    #stats div{
+      display: none;
+      background-color: aquamarine;
+      background-color: brown;
+      border-radius: 10px;
+      padding: 10px 10px;
+      position: absolute;
+      top: 20px;
+      left:95px;
+    }
+
+    #stats:hover div{
+      display: block;
+    }
+
+
+
+  </style>
 </head>
 
 
@@ -11,8 +39,9 @@
 
 
 <body>
-
+<div>po ocenie slowa DB sie updateuje ale lokalne arraz sie nie updatuje i moga powstawac dyiwne problemy </div>
 <button id="twist"> Twist </button>
+<button id="stats">statistics  <div>words per day: 0000</div></button>
 
 <div id="row1">
   <a href="add_new.html">Add New Word</a>
@@ -24,6 +53,7 @@
   <button id="sort_random">Random</button>
   <button id="sort_newest">Newest</button>
   <button id="sort_oldest">Oldest</button>  
+  <button id="sort_alphabet">Alphabetically</button>
 
 </div>
 
@@ -138,7 +168,9 @@ function remove_no(){
 
 <script src="js/load_tb.js"></script>
 <script src="js/sort.js"></script>
-<script src="js/twist.js"></script>
+<!-- <script src="js/twist.js"></script> -->
+<script src="js/t.js"></script>
+<script src="js/stats.js"></script>
 
 
 

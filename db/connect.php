@@ -4,7 +4,7 @@
  $servername = "localhost";
  $username = "root";
  $password = "";
- $dbname = "vocabulary";
+ $dbname = "michal";
  
  // connect to DB
  $connection = mysqli_connect($servername,$username,$password );

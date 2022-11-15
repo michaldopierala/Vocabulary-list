@@ -13,21 +13,22 @@ document.getElementById('sort_worst').addEventListener('click', worst);
 document.getElementById('sort_random').addEventListener('click', random);
 document.getElementById('sort_newest').addEventListener('click', newest);
 document.getElementById('sort_oldest').addEventListener('click', oldest);
+document.getElementById('sort_alphabet').addEventListener('click', alphabet);
 
 
 //sort worst first
 function best(){
   clear_btn()
-  document.getElementById('sort_best').style.backgroundColor="rgb(100,230,120)";
+  document.getElementById('sort_best').style.backgroundColor="rgb(190,190,190)";
   tabe_db.sort((a, b) => (b.score[0]/b.score[1])-(a.score[0]/a.score[1]) );
-  displayTable();
+    displayTable();
 }
 
 //sort best first 
 function worst(){
   clear_btn()
-  document.getElementById('sort_worst').style.backgroundColor="rgb(100,230,120)";
-  tabe_db.sort((a, b) => (a.score[0]/a.score[1]) - (b.score[0]/b.score[1]));
+  document.getElementById('sort_worst').style.backgroundColor="rgb(190,190,190)";
+  tabe_db.sort((a, b) => (a.score[0]/a.score[1]) - (b.score[0]/b.score[1]));  
   displayTable();
 }
 
@@ -35,7 +36,7 @@ function worst(){
 // sort random
 function random() {
   clear_btn()
-  document.getElementById('sort_random').style.backgroundColor="rgb(100,230,120)";
+  document.getElementById('sort_random').style.backgroundColor="rgb(190,190,190)";
   let l = tabe_db.length;
   let tb_temp=[];
   let random; 
@@ -47,19 +48,38 @@ for (let i = 0; i < l; i++) {
   displayTable();
 }
 
-//sort best newest
+//sort  newest
 function newest(){
   clear_btn()
-  document.getElementById('sort_newest').style.backgroundColor="rgb(100,230,120)";
-  tabe_db.sort((a, b) => a.id - b.id);
+  document.getElementById('sort_newest').style.backgroundColor="rgb(190,190,190)";
+  tabe_db.sort((a, b) => b.id-a.id);
+  
   displayTable();
 }
 
-//sort best oldest
+//sort  oldest
 function oldest(){
   clear_btn()
-  document.getElementById('sort_oldest').style.backgroundColor="rgb(100,230,120)";
-  tabe_db.sort((a, b) => b.id-a.id);
+  document.getElementById('sort_oldest').style.backgroundColor="rgb(190,190,190)";
+  tabe_db.sort((a, b) => a.id - b.id);  
+  displayTable();
+}
+
+//sort alphabet
+function alphabet(){
+  console.log(tabe_db);
+  clear_btn()
+  document.getElementById('sort_alphabet').style.backgroundColor="rgb(190,190,190)";  
+for (let i = 0; i < tabe_db.length-1; i++) {
+  for (let x = 0; x < tabe_db.length-1; x++) {
+  
+  if(tabe_db[x]['newword'].localeCompare(tabe_db[x+1]['newword'])==1){
+    let temp = tabe_db[x]; 
+    tabe_db[x]=tabe_db[x+1];
+    tabe_db[x+1]=temp; 
+  }   
+}
+}
   displayTable();
 }
 
