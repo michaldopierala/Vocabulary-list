@@ -14,16 +14,17 @@ let column_score = "score";
 const xhttp = new XMLHttpRequest();
 
 // Recive JSON and convert to object 
-xhttp.onload = function () {
+ xhttp.onload = function () {
   console.log('recived'); 
   tabe_db = JSON.parse(this.responseText);
-// function display table with vocabulary on the webpage.  
 
+// function display table with vocabulary on the webpage.  
 let table ="<div class='tb'><div><div>"+ column_1 +"</div></div> <div>"+ column_2 +"</div> <div></div><div>"+column_score+"</div><div></div>" +"</div>";
 for (let x in tabe_db) {
   table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div></div> <div></div><div></div><div></div>" +"</div>";
   document.getElementById("row3").innerHTML=table;
 }
+stats();
 }
 
 // Send a request
