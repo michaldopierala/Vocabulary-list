@@ -4,11 +4,10 @@ body{
 
 }
 a{
-  background-color: green;
-  border-radius: 7px;
-  margin: 10px 30px;
-  padding: 10px 5px;
-  text-decoration: none;
+  /* background-color: green; */
+  /* border-radius: 7px; */
+  /* margin: 10px 30px; */
+  /* padding: 10px 5px; */
   color: whitesmoke;
 }
 
@@ -16,29 +15,66 @@ a, button:hover {
   cursor: pointer;
 }
 
-button{
+button,a{
+  font-size: 14px;
   background-color:  white;
   border: none; 
   border-radius: 7px;
+  text-decoration: none;
   padding: 10px 20px;
   margin: 5px;
   color: black;
   font-weight: bold;
 }
+
+#row1{
+  text-align: right;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+#row1 button,a{
+  background-color:  rgb(50, 48, 69);
+  color: whitesmoke
+}
+
 #twist{
 background-color:slateblue;
 color: whitesmoke;
 }
 
-#row1{
-  text-align: right;
-  padding: 20px;
+#stats{
+  position: relative;
 }
+
+#stats div{
+  display: none;
+  background-color: whitesmoke;
+  /* background-color: brown; */
+  border-radius: 10px;
+  padding: 10px 10px;
+  position: absolute;
+  top: 20px;
+  left:95px;
+  color: black;
+  width: 90px;
+}
+
+#stats:hover div{
+  display: block;
+}
+
+
 #row2{
   display: flex;
   flex-wrap: wrap;
   /* display: block; */
-  padding: 10px;
+  padding: 0px;
+  /* border: red solid 1px;   */
+  margin-bottom: 10px;
 }
 
 
@@ -74,7 +110,7 @@ color: whitesmoke;
   width: 100%; 
   height: 100%; 
   z-index: 1;
-  background-color: rgb(143, 188, 143, 0.9);
+  background-color: rgb(  107, 100, 155, 0.8);
 }
 
 #modal_content{
@@ -100,5 +136,12 @@ border:black solid 0.5px ;
   .tb > div {
     display: flex;
     flex-direction: column;
+  }
+
+  #row3 button{
+    padding: 7px 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
   }
 }

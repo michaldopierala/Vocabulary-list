@@ -84,12 +84,3 @@ for (let i = 0; i < tabe_db.length-1; i++) {
 }
 
 
-//  Display new table order after sorting function 
-function displayTable() {
-  let table ="<div class='tb'><div><div>"+ column_1 +"</div></div> <div>"+ column_2 +"</div> <div></div><div>Score</div><div></div>" +"</div>";
-  for (let x in tabe_db) {
-    table = table + "<div class='tb'><div><button value='"+ tabe_db[x].id+"' onclick='display(this)'>"+ tabe_db[x].newword +"</button></div> <div id='te22'></div> <div></div><div></div><div></div>" +"</div>";
-    document.getElementById("row3").innerHTML=table;
-  }
-  console.log();
-}
