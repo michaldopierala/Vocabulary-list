@@ -1,10 +1,13 @@
+
+// THIS FILE STILLE NEEDS A LOT OF WORK TO MAKE SURE THAT EVERYTHING WORKS WELL. 
+
+
 const btnTwist= document.getElementById('twist');
 
 let twistState = false;
 
 btnTwist.addEventListener('click', useTwist);
 
-console.log(tabe_db); 
 
 function useTwist() {
     twistState = !twistState; 

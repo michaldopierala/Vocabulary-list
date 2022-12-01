@@ -4,13 +4,13 @@
 // global variables 
 let tabe_db = [];
 
-console.log(tabe_db )
 let id;
 let tabe_iter; // iteration of elements on the page 
 let column_1 = "Word";  // column description
 let column_2 = "Translation";  // column description
 let column_score = "score"; 
 let screen =window.outerWidth;
+
 
 
 
@@ -23,10 +23,8 @@ const xhttp = new XMLHttpRequest();
   tabe_db = JSON.parse(this.responseText);
 
 // function display table with vocabulary on the webpage.  
-
-
-stats();
 displayTable();
+stats();
 }
 
 // Send a request

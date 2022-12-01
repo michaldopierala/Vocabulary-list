@@ -15,6 +15,7 @@ closeStats.addEventListener('click', ()=>{statsModal.style.display="none"});
 
 // this function is called inside AJAX in load_tb.js after the tabe_db array is downloaded from DB 
 function stats(){
+    console.log(tabe_db);
     let counterW = 0;
     let countM = 0; 
 
@@ -27,10 +28,6 @@ function stats(){
 
 
 
-    // console.log('this is call me latter function ');
-
-
-     
     for (let x in tabe_db) {
         if (tabe_db[x].time>pastWeek) {
             counterW++;
@@ -44,12 +41,7 @@ function stats(){
     statsText+= "Number of words in the last week: "+ counterW+"<br><br>";
     statsText+= "number of words in the last month: "+countM+"<br><br>"; 
 
-
-    console.log(countM);
-    // console.log('this is nr of words in last week:'+counterW);
     statsShow.innerHTML = statsText; 
 
-
-    
 }
 
