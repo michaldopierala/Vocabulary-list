@@ -3,6 +3,8 @@
 
 // global variables 
 let tabe_db = [];
+
+console.log(tabe_db )
 let id;
 let tabe_iter; // iteration of elements on the page 
 let column_1 = "Word";  // column description

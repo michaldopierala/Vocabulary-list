@@ -10,10 +10,7 @@
     margin: 0px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: lightgreen;
-
-
-
+    background-color: rgb(107, 100, 155);
   }
   a{
     text-decoration: none;
@@ -22,12 +19,13 @@
     margin: 50px;
     font-size: 25px;
     background-color: aliceblue;
+    color: black;
 
   }
   
 #container{
   font-size: 25px;
-  margin:50px auto;
+  margin:150px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,14 +50,21 @@
 input, button{
   font-size: 25px;
   border-radius: 7px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding:8px;
+  margin: 5px;
 }
 
 button{
-  background-color: blueviolet;
-  padding:10px 30px;
-  border:none;
+  font-size: 20px;
+  background-color:  white;
+  border: none; 
+  border-radius: 7px;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 5px;
+  color: black;
+  font-weight: bold;
 }
 
 button:hover{
@@ -72,14 +77,16 @@ button:hover{
 
 <body>
   <br>
-  <a href="index.html"> Go Back</a>
+  <a href="index.html"> &larr;    Go Back</a>
 
   <!-- <form id="myForm" action="db/add.php"> -->
     <div id="container">
       <label for="fname">New Word:</label>
-      <input type="text" id="new" name="new" ><br><br>
+      <input type="text" id="new" name="new" ><br>
       <label for="lname">Translation:</label>
-      <input type="text" id="tr" name="tr" ><br><br>
+      <input type="text" id="tr" name="tr" ><br>
+      <label for="lname">Example in sentance:</label>
+      <input type="text" id="ExampleSentance" name="ex" ><br>
       <button id="send">Send</button>
     </div>
     
